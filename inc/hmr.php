@@ -51,13 +51,13 @@ add_action('wp_enqueue_scripts', 'enqueue_vite_client');
 if (isViteHMRAvailable()) {
 	add_filter(
 		'stylesheet_uri', function () {
-			return getViteDevServerAddress().'/sass/style.scss';
+			return getViteDevServerAddress().'/assets/sass/style.scss';
 		}
 	);
   
 	add_filter(
 		'stylesheet_directory_uri', function () {
-			return getViteDevServerAddress().'/sass';
+			return getViteDevServerAddress().'/assets/sass';
 		}
 	);
   }

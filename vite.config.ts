@@ -5,8 +5,8 @@ export default defineConfig({
 	build: {
 		rollupOptions: {
 		  input: {
-			main: './sass/style.ts',   // Votre entrée JS/TS
-			style: './sass/style.scss'  // Votre entrée SASS/SCSS/CSS
+			main: './assets/sass/style.ts',   // Votre entrée JS/TS
+			style: './assets/sass/style.scss'  // Votre entrée SASS/SCSS/CSS
 		  },
 		  output: {
 			dir: 'dist',  // le répertoire de sortie

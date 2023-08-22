@@ -8,9 +8,17 @@ Requires at least: WordPress 6.0
 Version: 1.0
 */
 
+@use 'abstracts';
+@use 'vendors';
+@use 'base';
+@use 'utilities';
+@use 'components';
+@use 'pages';
+@use 'themes';
+
 $background-color: red;
 
 body {
   background: $background-color;
-  color: yellow;
+  color: blue;
 }
