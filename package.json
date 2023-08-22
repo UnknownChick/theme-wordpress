@@ -1,0 +1,14 @@
+{
+	"name": "wordpress-theme",
+	"version": "1.0.0",
+	"private": true,
+	"license": "UNLICENSED",
+	"scripts": {
+		"start": "vite build && vite dev",
+		"build": "vite build"
+	},
+	"devDependencies": {
+		"sass": "^1.66.1",
+		"vite": "^4.0.3"
+	}
+}
