@@ -20,6 +20,9 @@ add_theme_support( 'title-tag' );
 
 function register_assets() {
     // Déclarer le fichier style.css à la racine du thème
-    wp_enqueue_style('style',  get_stylesheet_uri(), array(), '1.0');
+    wp_enqueue_style('style', get_stylesheet_uri(), array(), '1.0');
+	wp_enqueue_style('style-dist', get_stylesheet_directory_uri().'/dist/style.css', array(), '1.0');
 }
 add_action( 'wp_enqueue_scripts', 'register_assets' );
+
+var_dump(get_stylesheet_directory_uri());

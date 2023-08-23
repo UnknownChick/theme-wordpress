@@ -55,10 +55,13 @@ if (isViteHMRAvailable()) {
 		}
 	);
   
-	add_filter(
-		'stylesheet_directory_uri', function () {
-			return getViteDevServerAddress().'/assets/sass';
-		}
-	);
+	if(WP_ENV == 'development') {
+		add_filter(
+			'stylesheet_directory_uri', function () {
+				return getViteDevServerAddress().'/assets/sass';
+			}
+		);
+	}
+	
   }
 ?>

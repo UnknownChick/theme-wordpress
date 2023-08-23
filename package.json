@@ -5,10 +5,13 @@
 	"license": "UNLICENSED",
 	"scripts": {
 		"start": "vite build && vite dev",
-		"build": "vite build"
+		"build": "vite build",
+		"prettier": "prettier --check .",
+		"prettier:fix": "prettier --write ."
 	},
 	"devDependencies": {
 		"@types/node": "^20.5.3",
+		"prettier": "^3.0.2",
 		"sass": "^1.66.1",
 		"vite": "^4.0.3"
 	},
