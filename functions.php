@@ -24,5 +24,3 @@ function register_assets() {
 	wp_enqueue_style('style-dist', get_stylesheet_directory_uri().'/dist/style.css', array(), '1.0');
 }
 add_action( 'wp_enqueue_scripts', 'register_assets' );
-
-var_dump(get_stylesheet_directory_uri());
