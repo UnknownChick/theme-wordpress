@@ -8,21 +8,11 @@ Requires at least: WordPress 6.0
 Version: 1.0
 */
 
-@use 'abstracts';
-@use 'vendors';
-@use 'base';
-@use 'utilities';
-@use 'components';
-@use 'pages';
-@use 'themes';
-
-$background-color: red;
-
-body {
-  background: $background-color;
-  color: green;
-}
-
-:fullscreen {
-	width: 100%;
-}
+@import 'abstracts';
+@import 'base';
+@import 'components';
+@import 'layout';
+@import 'pages';
+@import 'themes';
+@import 'utilities';
+@import 'vendors';

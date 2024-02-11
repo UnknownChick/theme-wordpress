@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-
-<h1>Coucou</h1>
-
+	<main>
+		
+	</main>
 <?php get_footer(); ?>

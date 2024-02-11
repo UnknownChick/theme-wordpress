@@ -1,26 +1,67 @@
-import { defineConfig } from 'vite';
+import { defineConfig, Plugin } from 'vite';
 import autoprefixer from 'autoprefixer';
 import { babel } from '@rollup/plugin-babel';
+import fs from 'fs';
+import { resolve as resolvePath, dirname } from 'path';
+
+const CopyFile = ({
+	sourceFileName,
+	absolutePathToDestination,
+}: {
+	sourceFileName: string;
+	absolutePathToDestination: string;
+}): Plugin => ({
+	name: 'copy-file-plugin',
+	writeBundle: async (options, bundle) => {
+	const fileToCopy = Object.values(bundle).find(({ name }) => name === sourceFileName);
+
+	if (!fileToCopy) {
+		return;
+	}
+
+	const sourcePath = resolvePath(options.dir, fileToCopy.fileName);
+
+	await fs.promises.mkdir(dirname(absolutePathToDestination), {
+		recursive: true,
+	});
+
+	await fs.promises.copyFile(sourcePath, absolutePathToDestination);
+	},
+});
+
+const path = new URL('.', import.meta.url).pathname;
+const __dirname = process.platform === 'win32' ? path.slice(1) : path;
 
 export default defineConfig({
+	base: '/wp-content/themes/theme-wordpress/dist/',
+	plugins: [
+		CopyFile({
+		  sourceFileName: 'style.css',
+		  absolutePathToDestination: resolvePath(__dirname, './style.css'),
+		}),
+		CopyFile({
+			sourceFileName: 'app.ts',
+			absolutePathToDestination: resolvePath(__dirname, './dist/app.js'),
+		  }),
+	  ],
 	build: {
 		rollupOptions: {
 			input: {
-				main: './assets/sass/style.ts',   // Votre entrée JS/TS
-				style: './assets/sass/style.scss',  // Votre entrée SASS/SCSS/CSS
-				home: './assets/js/home.js'
+				main: './assets/sass/style.ts',
+				style: './assets/sass/style.scss',
+				app: './assets/ts/app.ts'
 			},
 			output: {
-				dir: 'dist',  // le répertoire de sortie
-				format: 'es',  // Format du module. "es" est pour ES module.
-				entryFileNames: `[name].js`, // Format personnalisé pour les noms de fichiers d'entrée
-				chunkFileNames: `[name].js`, // Format personnalisé pour les noms de fichiers chunk
-				assetFileNames: `[name].[ext]` // Format personnalisé pour les noms de fichiers d'assets (comme CSS)
+				dir: 'dist',
+				format: 'es',
+				entryFileNames: `[name].js`,
+				chunkFileNames: `[name].js`,
+				assetFileNames: `[name].[ext]`
 			},
 			plugins: [
 				babel({
 					babelHelpers: 'bundled',
-					extensions: ['.js', '.ts']  // ajoutez d'autres extensions si nécessaire
+					extensions: ['.js', '.ts']
 				})
 			]
 		}

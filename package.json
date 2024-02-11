@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"private": true,
 	"license": "UNLICENSED",
+	"main": "index.js",
 	"scripts": {
 		"start": "vite build && vite dev",
 		"build": "vite build",
